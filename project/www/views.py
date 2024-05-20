@@ -29,13 +29,13 @@ def players(request):
     if request.method == 'POST':
         form = PlayersForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('players')  # Redirect to the same page to display the updated list
+            player = form.save()
+            selected_club = form.club.all().values_list('name', flat=True)
+            selected_position = form.club.all().values_list('name', flat=True)
+            return render(request, 'www/index.html', {'player_form': PlayersForm(), 'player': player, 'selected_club': selected_club ,'selected_position':selected_position})    
     else:
         form = PlayersForm()
-    
-   
-    return render(request, 'www/players.html', {'form': form})
+    return render(request, 'www/players.html', {'players_form': form})
 
 
 def positions(request):

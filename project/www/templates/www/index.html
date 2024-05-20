@@ -27,8 +27,8 @@
                     {% for club in clubs %}
                         <div class="card">
                             <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
-                            <p>Name: {{ club.name }}</p>
-                            <p>Date: {{ club.date|date:"j F Y" }}</p>
+                            <p><span>Name:</span> {{ club.name }}</p>
+                            <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
                         </div>
                     {% endfor %}
                 </div>
@@ -39,15 +39,15 @@
                     {% for player in players %}
                         <div class="card">
                             <img src="{{ player.photo.url }}" alt="{{ player.name }}" width="100">
-                            <p>Name: {{ player.name }}</p>
-                            <p>Surename: {{ player.surename }}</p>
-                            <p>Age: {{ player.age}}</p>
-                            <p>Clubs:
+                            <p><span>Name:</span> {{ player.name }}</p>
+                            <p><span>Surename: </span>{{ player.surname }}</p>
+                            <p><span>Age:</span>{{ player.age}}</p>
+                            <p><span>Clubs</span>:
                                 {% for club in player.club.all %}
                                     {{ club.name }}
                                 {% endfor %}
                             </p>
-                            <p>Positions:
+                            <p><span>Positions</span>:
                                 {% for position in player.position.all %}
                                     {{ position.name }}
                                 {% endfor %}
@@ -61,7 +61,7 @@
                     <div class="card_container">
                         {% for position in positions %}
                             <div class="card">
-                                <p>Name: {{ position.name }}</p>
+                                <p><span>{{ position.name }}</span></p>
                             </div>
                         {% endfor %}
                     </div>

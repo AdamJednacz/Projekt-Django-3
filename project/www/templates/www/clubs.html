@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs.css' %}">
     <title>Clubs</title>
 </head>
 <body>
@@ -19,23 +20,28 @@
     </header>
     <section class="clubs">
         <div class="container">
-            <h1>Create a Club</h1>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="button">Save Club</button>
-            </form>
-
-            <h2>Existing Clubs</h2>
-            <ul>
-                {% for club in clubs %}
-                    <li>
-                        <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
-                        <p>Name: {{ club.name }}</p>
-                        <p>Date: {{ club.date|date:"j F Y" }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="create_club">
+                <h1 class="title">Create a Club</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.date }}
+                    {{ form.photo }}
+                    <button type="submit" class="button">Save Club</button>
+                </form>
+            </div>
+            <div>
+                <div class="existing_clubs">
+                    <h1 class="title">Existing Clubs:</h2>
+                    {% for club in clubs %}
+                        <div class="club">
+                            <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
+                            <p>Name: {{ club.name }}</p>
+                            <p>Date: {{ club.date|date:"j F Y" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </section>
 </body>

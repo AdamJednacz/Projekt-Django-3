@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'players.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <title>Document</title>
 </head>
@@ -21,7 +22,12 @@
         <div class="container">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ players_form.name }}
+                {{ players_form.surname }}
+                {{ players_form.age }}
+                {{ players_form.club }}
+                {{ players_form.position }}
+                {{ players_form.photo }}
                 <button type="submit" class="button">Save Player</button>
             </form>
         </div>
