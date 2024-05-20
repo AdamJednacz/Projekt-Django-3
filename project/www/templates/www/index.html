@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{% url 'index' %}"><button class="button">Home</button></a>
+            <a href="{% url 'clubs' %}"><button class="button">Clubs</button></a>
+            <a href="{% url 'players' %}"><button class="button">Players</button></a>
+            <a href="{% url 'positions' %}"><button class="button">Positions</button></a>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cards">
+                <h1>Clubs:</h1>
+                <div class="card_container">
+                    {% for club in clubs %}
+                        <div class="card">
+                            <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
+                            <p>Name: {{ club.name }}</p>
+                            <p>Date: {{ club.date|date:"j F Y" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="cards">
+                <h1>Players:</h1>
+                <div class="card_container">
+                    {% for player in players %}
+                        <div class="card">
+                            <img src="{{ player.photo.url }}" alt="{{ player.name }}" width="100">
+                            <p>Name: {{ player.name }}</p>
+                            <p>Surename: {{ player.surename }}</p>
+                            <p>Age: {{ player.age}}</p>
+                            <p>Clubs:
+                                {% for club in player.club.all %}
+                                    {{ club.name }}
+                                {% endfor %}
+                            </p>
+                            <p>Positions:
+                                {% for position in player.position.all %}
+                                    {{ position.name }}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div>
+            <div class="cards">
+                <h1>Positions:</h1>
+                    <div class="card_container">
+                        {% for position in positions %}
+                            <div class="card">
+                                <p>Name: {{ position.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

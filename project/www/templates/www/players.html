@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="{% url 'index' %}"><button class="button">Home</button></a>
+            <a href="{% url 'clubs' %}"><button class="button">Clubs</button></a>
+            <a href="{% url 'players' %}"><button class="button">Players</button></a>
+            <a href="{% url 'positions' %}"><button class="button">Positions</button></a>
+        </div>
+    </header>
+    <section class="players">
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button">Save Player</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
