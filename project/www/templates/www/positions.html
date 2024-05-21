@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'positions.css' %}">
     <title>Document</title>
 </head>
 <body>
@@ -13,15 +14,15 @@
         <div class="container">
             <a href="{% url 'index' %}"><button class="button">Home</button></a>
             <a href="{% url 'clubs' %}"><button class="button">Clubs</button></a>
-            <a href="{% url 'players' %}"><button class="button">Players</button></a>
             <a href="{% url 'positions' %}"><button class="button">Positions</button></a>
+            <a href="{% url 'players' %}"><button class="button">Players</button></a>
         </div>
     </header>
     <section class="positions">
         <div class="container">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{form.name }}
                 <button type="submit" class="button">Save Position</button>
             </form>
         </div>

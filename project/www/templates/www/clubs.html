@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'clubs.css' %}">
     <title>Clubs</title>
 </head>
@@ -14,8 +15,8 @@
         <div class="container">
             <a href="{% url 'index' %}"><button class="button">Home</button></a>
             <a href="{% url 'clubs' %}"><button class="button">Clubs</button></a>
-            <a href="{% url 'players' %}"><button class="button">Players</button></a>
             <a href="{% url 'positions' %}"><button class="button">Positions</button></a>
+            <a href="{% url 'players' %}"><button class="button">Players</button></a>
         </div>
     </header>
     <section class="clubs">
@@ -33,12 +34,12 @@
             <div>
                 <div class="existing_clubs">
                     <h1 class="title">Existing Clubs:</h2>
-                    {% for club in clubs %}
-                        <div class="club">
-                            <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
-                            <p>Name: {{ club.name }}</p>
-                            <p>Date: {{ club.date|date:"j F Y" }}</p>
-                        </div>
+                        {% for club in clubs %}
+                            <a class="card" href="{% url 'club_detail' club.id %}">
+                                <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
+                                <p><span>Name:</span> {{ club.name }}</p>
+                                <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
+                            </a>
                     {% endfor %}
                 </div>
             </div>

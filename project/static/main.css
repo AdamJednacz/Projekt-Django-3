@@ -2,10 +2,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-  
+    height: 80vh;
    
 }
-
+h1{
+    margin-top: 1rem;
+}
 main > .container{
     
     justify-content: space-between;
@@ -26,6 +28,8 @@ main > .container{
 
 .card{
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     background-color: #490470;
     color: #fff;
@@ -55,6 +59,7 @@ main > .container{
     font-size: 1rem;
     margin: 1rem 0;
 }
-span{
-    font-weight: bold;
+
+a {
+    text-decoration: none;
 }

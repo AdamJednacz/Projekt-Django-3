@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'clubs.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
-    <title>Document</title>
+    <title>{{ club.name }} - Details</title>
 </head>
 <body>
     <header>
@@ -19,37 +20,23 @@
             <a href="{% url 'players' %}"><button class="button">Players</button></a>
         </div>
     </header>
-    <main>
+    <main class="club_detail">
         <div class="container">
-            <div class="cards">
-                <h1>Clubs:</h1>
-                <div class="card_container">
-                    {% for club in clubs %}
-                        
-                            <a class="card" href="{% url 'club_detail' club.id %}">
-                                <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
-                                <p><span>Name:</span> {{ club.name }}</p>
-                                <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
-                            </a>
-                        
-                    {% endfor %}
-                </div>
+            <div class="club">
+                <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="200">
+                <p><span>Name:</span> {{ club.name }}</p>
+                <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
             </div>
             <div class="cards">
-                <h1>Players:</h1>
                 <div class="card_container">
+                    <h2><span>Players:</span></h2>
                     {% for player in players %}
                         <div class="card">
                             <img src="{{ player.photo.url }}" alt="{{ player.name }}" width="100">
                             <p><span>Name:</span> {{ player.name }}</p>
-                            <p><span>Surename: </span>{{ player.surname }}</p>
-                            <p><span>Age:</span>{{ player.age}}</p>
-                            <p><span>Clubs</span>:
-                                {% for club in player.club.all %}
-                                    {{ club.name }}
-                                {% endfor %}
-                            </p>
-                            <p><span>Positions</span>:
+                            <p><span>Surename:</span> {{ player.surname }}</p>
+                            <p><span>Age:</span> {{ player.age }}</p>
+                            <p><span>Positions:</span>
                                 {% for position in player.position.all %}
                                     {{ position.name }}
                                 {% endfor %}
@@ -57,16 +44,6 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
-            <div class="cards">
-                <h1>Positions:</h1>
-                    <div class="card_container">
-                        {% for position in positions %}
-                            <div class="card">
-                                <p><span>{{ position.name }}</span></p>
-                            </div>
-                        {% endfor %}
-                    </div>
             </div>
         </div>
     </main>

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import ClubsForm,PlayersForm,PositonsForm
 from .models import Club,Player,Position
 
@@ -30,9 +30,9 @@ def players(request):
         form = PlayersForm(request.POST, request.FILES)
         if form.is_valid():
             player = form.save()
-            selected_club = form.club.all().values_list('name', flat=True)
-            selected_position = form.club.all().values_list('name', flat=True)
-            return render(request, 'www/index.html', {'player_form': PlayersForm(), 'player': player, 'selected_club': selected_club ,'selected_position':selected_position})    
+            selected_club = form.cleaned_data['club']
+            selected_position = form.cleaned_data['position']
+            return render(request, 'www/players.html', {'players_form': PlayersForm(), 'player': player, 'selected_club': selected_club ,'selected_position':selected_position})    
     else:
         form = PlayersForm()
     return render(request, 'www/players.html', {'players_form': form})
@@ -42,8 +42,14 @@ def positions(request):
     if request.method == 'POST':
         form = PositonsForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('positions')  # Redirect to the same page to display the updated list
+            position = form.save()
+            return render(request, 'www/positions.html', {'form': PositonsForm(), 'position': position})    
     else:
         form = PositonsForm()
-    return render(request, 'www/positions.html', {'form':form})
+    return render(request, 'www/positions.html', {'form': form})
+
+
+def club_detail(request, club_id):
+    club = get_object_or_404(Club, id=club_id)
+    players = club.player_set.all()
+    return render(request, 'www/club_detail.html', {'club': club, 'players': players})
