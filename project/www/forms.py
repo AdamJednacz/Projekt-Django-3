@@ -26,8 +26,10 @@ class PlayersForm(forms.ModelForm):
 
 
 
-class PositonsForm(forms.ModelForm):
-    name =  forms.CharField(max_length=15, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+
+class PositionsForm(forms.ModelForm):
+    name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+
     class Meta:
         model = Position
-        fields = '__all__'        
+        fields = '__all__'

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import ClubsForm,PlayersForm,PositonsForm
+from .forms import ClubsForm,PlayersForm,PositionsForm
 from .models import Club,Player,Position
 
 
@@ -11,14 +11,12 @@ def index(request):
     return render(request, 'www/index.html', {'clubs': clubs_list, 'players': players_list, 'positions': positions_list})
 
 
-
-
 def clubs(request):
     if request.method == 'POST':
         form = ClubsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('clubs')  # Redirect to the same page to display the updated list
+            return redirect('clubs') 
     else:
         form = ClubsForm()
     
@@ -38,14 +36,16 @@ def players(request):
     return render(request, 'www/players.html', {'players_form': form})
 
 
+
 def positions(request):
     if request.method == 'POST':
-        form = PositonsForm(request.POST, request.FILES)
+        form = PositionsForm(request.POST)
         if form.is_valid():
-            position = form.save()
-            return render(request, 'www/positions.html', {'form': PositonsForm(), 'position': position})    
+            form.save()
+            return redirect('positions')
     else:
-        form = PositonsForm()
+        form = PositionsForm()
+
     return render(request, 'www/positions.html', {'form': form})
 
 

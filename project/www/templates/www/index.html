@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'main.css' %}">
-    <link rel="stylesheet" href="{% static 'footer.css' %}">
+
     <title>Document</title>
 </head>
 <body>
@@ -25,14 +25,13 @@
                 <h1>Clubs:</h1>
                 <div class="card_container">
                     {% for club in clubs %}
-                        
                             <a class="card" href="{% url 'club_detail' club.id %}">
                                 <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
                                 <p><span>Name:</span> {{ club.name }}</p>
                                 <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
                             </a>
-                        
-                    {% endfor %}
+                     
+                    {% endfor %}      
                 </div>
             </div>
             <div class="cards">
@@ -70,8 +69,6 @@
             </div>
         </div>
     </main>
-    <footer>
 
-    </footer>
 </body>
 </html>

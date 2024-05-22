@@ -31,19 +31,17 @@
                     <button type="submit" class="button">Save Club</button>
                 </form>
             </div>
-            <div>
-                <div class="existing_clubs">
-                    <h1 class="title">Existing Clubs:</h2>
-                        {% for club in clubs %}
-                            <a class="card" href="{% url 'club_detail' club.id %}">
-                                <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
-                                <p><span>Name:</span> {{ club.name }}</p>
-                                <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
-                            </a>
+            <div class="existing_clubs">
+                <h1 class="title">Existing Clubs:</h1>
+                    {% for club in clubs %}
+                        <a class="card" href="{% url 'club_detail' club.id %}">
+                            <img src="{{ club.photo.url }}" alt="{{ club.name }}" width="100">
+                            <p><span>Name:</span> {{ club.name }}</p>
+                            <p><span>Date:</span> {{ club.date|date:"j F Y" }}</p>
+                        </a>
                     {% endfor %}
-                </div>
             </div>
-        </div>
+        </div>     
     </section>
 </body>
 </html>

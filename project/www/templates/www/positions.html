@@ -22,7 +22,7 @@
         <div class="container">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{form.name }}
+                {{ form.name }}
                 <button type="submit" class="button">Save Position</button>
             </form>
         </div>
